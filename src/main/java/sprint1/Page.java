@@ -6,25 +6,21 @@ public abstract class Page {
 	private String id;
 	private String name;
 	private ArrayList<String> external_links;
-	private HashMap<String,ArrayList<Page>> internal_links;
-	private static final String[] default_links = {"mentor","editor","viewer"};
-	
+	private HashMap<String,ArrayList<Page>> internal_links;	
 	/**
 	 * @param id
 	 * @param name
 	 * @param external_links
 	 * @param internal_links
 	 */
-	public Page(String name, String[] roles) {
+	public Page(String name) {
 		this.id = IDSingleton.getNextID();
 		this.name = name;
 		this.external_links = new ArrayList<String>();
 		this.internal_links = new HashMap<String,ArrayList<Page>>();
-		for(String role: default_links) {
-			this.internal_links.put(role,new ArrayList<Page>());
-		}
-		for(String role: roles) {
-			this.internal_links.put(role,new ArrayList<Page>());
+		String[] links = this.getLinks();
+		for(String link: links) {
+			this.internal_links.put(link,new ArrayList<Page>());
 		}
 	}
 	public String getId() {

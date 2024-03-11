@@ -6,7 +6,7 @@ public class Person extends Page {
 	private String phone_number;
 	private static final String[] roles = {"editor","viewer","mentor","contributor",
 			"employee","follower","applicant","friend"};
-	private static final String[] links = {"friend","project","skill","news","job","follower"};
+	private static final String[] links = {"friend","project","skill","news","job","follower","mentor","editor","viewer"};
 	
 	/**
 	 * @param name
@@ -15,7 +15,7 @@ public class Person extends Page {
 	 * @param phone_number
 	 */
 	public Person(String name, String pronouns, String email, String phone_number) {
-		super(name, links);
+		super(name);
 		this.pronouns = pronouns;
 		this.email = email;
 		this.phone_number = phone_number;

@@ -2,9 +2,9 @@ package sprint1;
 
 public class Project extends Page {
 	private static final String[] roles = {"project"};
-	private static final String[] links = {"contributor","follower"};
+	private static final String[] links = {"contributor","follower","editor","mentor","viewer"};
 	public Project(String name) {
-		super(name, links);
+		super(name);
 	}
 	public String[] getRoles() {
 		return roles;

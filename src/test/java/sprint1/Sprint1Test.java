@@ -9,8 +9,10 @@ import org.junit.jupiter.api.Test;
 
 class Sprint1Test {
 	ArrayList<Page> pages;
+	/*list of all links types to test*/
 	final String[] links = {"editor","viewer","mentor","contributor",
-			"employee","follower","applicant","friend","project","job","skill","news"};
+			"employee","follower","applicant","friend","project","job","skill","news",
+			/*include a link that is not valid in any class*/"general"};
 	@BeforeEach
 	void setUp() throws Exception {
 		pages = new ArrayList<Page>();
@@ -24,6 +26,7 @@ class Sprint1Test {
 
 	@Test
 	void testID() {
+		/*test that the IDSingleton creates IDs in sequence*/
 		ArrayList<Integer> ids = new ArrayList<Integer>();
 		ids.add(Integer.parseInt(IDSingleton.getNextID()));
 		for(int i = 1; i<20; i++) {
@@ -37,6 +40,8 @@ class Sprint1Test {
 	
 	@Test
 	void testPage() {
+		/*test all getters and setters of the page abstract class, 
+		 * except those related to internal links*/
 		int lastID = Integer.parseInt(IDSingleton.getNextID());
 		int j = 0;
 		for(int i = 6; i>0; i--) {
@@ -62,6 +67,7 @@ class Sprint1Test {
 	
 	@Test
 	void testPerson() {
+		/*test Person-specific getters and setters along with the internal links*/
 		Person p = new Person("p","she/her","p@gmail.com","5555555555");
 		assertTrue(p.getPronouns().equals("she/her"));
 		p.setPronouns("they/them");
@@ -75,13 +81,48 @@ class Sprint1Test {
 		checkLinks(p);
 	}
 	
+	@Test
+	void testCompany() {
+		/*test the Company links*/
+		Company c = new Company("p");
+		checkLinks(c);
+	}
+	@Test
+	void testSkill() {
+		/*test the Skill links*/
+		Skill s = new Skill("p");
+		checkLinks(s);
+	}
+	@Test
+	void testProject() {
+		/*test the Project links*/
+		Project p = new Project("p");
+		checkLinks(p);
+	}
+	@Test
+	void testNewsArticle() {
+		/*test the NewsArticle links*/
+		NewsArticle n = new NewsArticle("p");
+		checkLinks(n);
+	}
+	@Test
+	void testJobPosting() {
+		/*test the JobPosting links*/
+		JobPosting j = new JobPosting("j");
+		checkLinks(j);
+	}
+	
 	void checkLinks(Page p) {
+		/*attempt to add every type of page as every type of link to Page p.
+		 * use the links held in Page p to determine if the link type is valid
+		 * use the roles held in each page to see if they can be that type of link
+		 * ensures an exception is thrown when an invalid link is added or removed
+		 * ensures all valid links do not throw an exception
+		 */
 		for(int i = 0; i<links.length; i++) {
 			boolean is_valid_link = contains(p.getLinks(),links[i]) || isDefaultLink(links[i]);
-			System.out.println(links[i] + " " + is_valid_link);
 			for(int j = 0; j<pages.size(); j++) {
 				boolean is_valid_role = contains(pages.get(j).getRoles(),links[i]);
-				System.out.println(pages.get(j).getClass().getName() + " " + is_valid_role);
 				try {
 					p.addInternalLink(links[i], pages.get(j));
 					if(!is_valid_role || !is_valid_link) {
