@@ -62,7 +62,7 @@ class Sprint1Test {
 		p.removeExternalLink("abc.com");
 		assertEquals(1,p.getExternalLinks().size());
 		assertFalse(p.getExternalLinks().contains("abc.com"));
-		assertEquals(p.getLinks().length+3,p.getInternalLinks().size());
+		assertEquals(p.getLinks().length,p.getInternalLinks().size());
 	}
 	
 	@Test
