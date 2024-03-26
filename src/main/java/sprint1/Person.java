@@ -1,5 +1,7 @@
 package sprint1;
 
+import java.util.ArrayList;
+
 public class Person extends Page {
 	private String pronouns;
 	private String email;
@@ -44,5 +46,16 @@ public class Person extends Page {
 	@Override
 	public String[] getLinks() {
 		return links;
+	}
+	public boolean canView(Page p) {
+		ArrayList<Page> viewers = p.getInternalLinks().get("viewer");
+		if(viewers.isEmpty()) {
+			return true;
+		}
+		return viewers.contains(this);
+	}
+	public boolean canEdit(Page p) {
+		ArrayList<Page> editors = p.getInternalLinks().get("editor");
+		return editors.contains(this);
 	}
 }

@@ -79,6 +79,28 @@ class Sprint1Test {
 		p.setPhoneNumber("0123456789");
 		assertTrue(p.getPhoneNumber().equals("0123456789"));
 		checkLinks(p);
+		Page a = pages.get(1);
+		assertTrue(p.canView(a));
+		try {
+			a.addInternalLink("viewer", pages.get(0));
+		} catch (InvalidLinkException e) {
+			fail("failed to add person as viewer");
+		}
+		assertFalse(p.canView(a));
+		try {
+			a.addInternalLink("viewer", p);
+		} catch (InvalidLinkException e) {
+			fail("failed to add person as viewer");
+		}
+		assertTrue(p.canView(a));
+		assertFalse(p.canEdit(a));
+		try {
+			a.addInternalLink("editor", p);
+		} catch (InvalidLinkException e) {
+			fail("failed to add person as editor");
+		}
+		assertTrue(p.canEdit(a));
+
 	}
 	
 	@Test
@@ -167,4 +189,5 @@ class Sprint1Test {
 		}
 		return false;
 	}
+	
 }
