@@ -1,18 +1,23 @@
 package sprint1;
 
+
 public class Skill extends Page {
-	private static final String[] roles = {"skill"};
-	private static final String[] links = {"project","news","follower","editor","mentor","viewer"};
+	private static final String[] rolesIs = {"skill","follower"};
+	private static final String[] linksHas = {"editor","mentor","viewer"};
 	public Skill(String name) {
 		super(name);
 	}
-	@Override
-	public String[] getRoles() {
-		return roles;
-	}
-	@Override
-	public String[] getLinks() {
-		return links;
+	public Skill(PageDesc p) {
+		super(p);
 	}
 
+	@Override
+	public String[] getRolesIs() {
+		return rolesIs;
+	}
+	@Override
+	public String[] getLinksHas() {
+		return linksHas;
+	}
+	
 }

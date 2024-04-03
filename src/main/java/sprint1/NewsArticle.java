@@ -1,16 +1,21 @@
 package sprint1;
 
+
 public class NewsArticle extends Page {
-	private static final String[] roles = {"news"};
-	private static final String[] links = {"contributor","editor","mentor","viewer"};
+	private static final String[] rolesIs = {"news"};
+	private static final String[] linksHas = {"contributor","editor","mentor","viewer"};
 	public NewsArticle(String name) {
 		super(name);
 	}
-	public String[] getRoles() {
-		return roles;
+	public NewsArticle(PageDesc p) {
+		super(p);
 	}
 	@Override
-	public String[] getLinks() {
-		return links;
+	public String[] getRolesIs() {
+		return rolesIs;
+	}
+	@Override
+	public String[] getLinksHas() {
+		return linksHas;
 	}
 }
