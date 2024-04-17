@@ -102,7 +102,7 @@ public class Storage {
 		return resp.successful();
 	}
 	
-	public static Person[] pullPeople(){
+	private static Person[] pullPeople(){
 		if(baseUri == null) {
 			create();
 			return null;
@@ -123,6 +123,34 @@ public class Storage {
 			people[i] = new Person(personResp.data());
 		}
 		return people;
+	}
+	public static Page[] pullAll(String type){
+		type = "sprint1."+type;
+		if(baseUri == null) {
+			create();
+			return null;
+		}
+		if(!classes.contains(type)) {
+			return null;
+		}
+		if(type.equals("sprint1.Person")) {
+			return pullPeople();
+		}
+		ListResponse resp = client.get().uri(baseUri+"/"+type)
+				.retrieve()
+				.body(ListResponse.class);
+		int numPages = resp.data().length;
+		//System.out.println(numPages);
+		Page[] pages = new Page[numPages];
+		for(int i = 0; i<numPages;i++) {
+			PageResponse pageResp = client.get()
+					.uri(baseUri+"/"+type+"/"+resp.data()[i].name())
+					.retrieve()
+					.body(PageResponse.class);
+			System.out.println(pageResp.data());
+			pages[i] = PageFactory.makePage(type, pageResp.data());
+		}
+		return pages;
 	}
 	public static void wipeAll() {
 		client.delete()

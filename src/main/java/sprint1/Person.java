@@ -37,6 +37,7 @@ public class Person extends Page {
 		this.email = p.email();
 		this.phoneNumber = p.phoneNumber();
 	}
+	public Person() {};
 	public String getPronouns() {
 		return pronouns;
 	}

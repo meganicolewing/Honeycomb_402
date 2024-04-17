@@ -30,6 +30,7 @@ public abstract class Page {
 		this.externalLinks = p.externalLinks();
 		this.internalLinks = p.internalLinks();
 	}
+	public Page() {};
 	public String getId() {
 		return id;
 	}

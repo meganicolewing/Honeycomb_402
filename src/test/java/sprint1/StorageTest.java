@@ -50,25 +50,135 @@ class StorageTest {
 	
 	@Test
 	void testPullPeople() {
-		assertTrue(Storage.pullPeople()==null);
+		assertTrue(Storage.pullAll("Recommender")==null);
+		assertTrue(Storage.pullAll("Person")==null);
 		Page a = new Company("a");
-		assertTrue(Storage.pullPeople()==null);
+		assertTrue(Storage.pullAll("Person")==null);
 		Person b = new Person("b", "she/her", "b@gmail.com", "1542369845");
 		Person c = new Person("c", "they/him", "b@gmail.com", "1542369845");
 		Person d = new Person("d", "she/they", "b@gmail.com", "1542369845");
 		Person e = new Person("e", "he/him", "b@gmail.com", "1542369845");
 		Person f = new Person("f", "they/them", "b@gmail.com", "1542369845");
-		Person[] p = Storage.pullPeople();
+		Page[] p = Storage.pullAll("Person");
 		ArrayList<String> names = new ArrayList<String>();
 		for(int i = 0; i<p.length; i++) {
 			names.add(p[i].getName());
 		}
-		assertTrue(names.contains("b"));
-		assertTrue(names.contains("c"));
-		assertTrue(names.contains("d"));
-		assertTrue(names.contains("e"));
-		assertTrue(names.contains("f"));
-
+		assertTrue(names.contains(b.getName()));
+		assertTrue(names.contains(c.getName()));
+		assertTrue(names.contains(d.getName()));
+		assertTrue(names.contains(e.getName()));
+		assertTrue(names.contains(f.getName()));
+		assertFalse(names.contains(a.getName()));
 	}
-
+	@Test
+	void testPullCompany() {
+		assertTrue(Storage.pullAll("Company")==null);
+		Page a = new Skill("a");
+		assertTrue(Storage.pullAll("Company")==null);
+		Company b = new Company("b");
+		Company c = new Company("c");
+		Company d = new Company("d");
+		Company e = new Company("e");
+		Company f = new Company("f");
+		Page[] p = Storage.pullAll("Company");
+		ArrayList<String> names = new ArrayList<String>();
+		for(int i = 0; i<p.length; i++) {
+			names.add(p[i].getName());
+		}
+		assertTrue(names.contains(b.getName()));
+		assertTrue(names.contains(c.getName()));
+		assertTrue(names.contains(d.getName()));
+		assertTrue(names.contains(e.getName()));
+		assertTrue(names.contains(f.getName()));
+		assertFalse(names.contains(a.getName()));
+	}
+	@Test
+	void testPullSkill() {
+		assertTrue(Storage.pullAll("Skill")==null);
+		Page a = new Company("a");
+		assertTrue(Storage.pullAll("Skill")==null);
+		Skill b = new Skill("b");
+		Skill c = new Skill("c");
+		Skill d = new Skill("d");
+		Skill e = new Skill("e");
+		Skill f = new Skill("f");
+		Page[] p = Storage.pullAll("Skill");
+		ArrayList<String> names = new ArrayList<String>();
+		for(int i = 0; i<p.length; i++) {
+			names.add(p[i].getName());
+		}
+		assertTrue(names.contains(b.getName()));
+		assertTrue(names.contains(c.getName()));
+		assertTrue(names.contains(d.getName()));
+		assertTrue(names.contains(e.getName()));
+		assertTrue(names.contains(f.getName()));
+		assertFalse(names.contains(a.getName()));
+	}
+	@Test
+	void testPullJobPosting() {
+		assertTrue(Storage.pullAll("JobPosting")==null);
+		Page a = new Company("a");
+		assertTrue(Storage.pullAll("JobPosting")==null);
+		JobPosting b = new JobPosting("b");
+		JobPosting c = new JobPosting("c");
+		JobPosting d = new JobPosting("d");
+		JobPosting e = new JobPosting("e");
+		JobPosting f = new JobPosting("f");
+		Page[] p = Storage.pullAll("JobPosting");
+		ArrayList<String> names = new ArrayList<String>();
+		for(int i = 0; i<p.length; i++) {
+			names.add(p[i].getName());
+		}
+		assertTrue(names.contains(b.getName()));
+		assertTrue(names.contains(c.getName()));
+		assertTrue(names.contains(d.getName()));
+		assertTrue(names.contains(e.getName()));
+		assertTrue(names.contains(f.getName()));
+		assertFalse(names.contains(a.getName()));
+	}
+	@Test
+	void testPullNewsArticle() {
+		assertTrue(Storage.pullAll("NewsArticle")==null);
+		Page a = new Company("a");
+		assertTrue(Storage.pullAll("NewsArticle")==null);
+		NewsArticle b = new NewsArticle("b");
+		NewsArticle c = new NewsArticle("c");
+		NewsArticle d = new NewsArticle("d");
+		NewsArticle e = new NewsArticle("e");
+		NewsArticle f = new NewsArticle("f");
+		Page[] p = Storage.pullAll("NewsArticle");
+		ArrayList<String> names = new ArrayList<String>();
+		for(int i = 0; i<p.length; i++) {
+			names.add(p[i].getName());
+		}
+		assertTrue(names.contains(b.getName()));
+		assertTrue(names.contains(c.getName()));
+		assertTrue(names.contains(d.getName()));
+		assertTrue(names.contains(e.getName()));
+		assertTrue(names.contains(f.getName()));
+		assertFalse(names.contains(a.getName()));
+	}
+	@Test
+	void testPullProject() {
+		assertTrue(Storage.pullAll("Project")==null);
+		Page a = new Company("a");
+		assertTrue(Storage.pullAll("Project")==null);
+		Project b = new Project("b");
+		Project c = new Project("c");
+		Project d = new Project("d");
+		Project e = new Project("e");
+		Project f = new Project("f");
+		Page[] p = Storage.pullAll("Project");
+		ArrayList<String> names = new ArrayList<String>();
+		for(int i = 0; i<p.length; i++) {
+			names.add(p[i].getName());
+		}
+		assertTrue(names.contains(b.getName()));
+		assertTrue(names.contains(c.getName()));
+		assertTrue(names.contains(d.getName()));
+		assertTrue(names.contains(e.getName()));
+		assertTrue(names.contains(f.getName()));
+		assertFalse(names.contains(a.getName()));
+	}
 }

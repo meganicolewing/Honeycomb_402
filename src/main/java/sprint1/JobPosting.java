@@ -19,10 +19,10 @@ public class JobPosting extends Page {
 		return linksHas;
 	}
 	public void recommend(Recommender r) throws InvalidLinkException {
-		Person[] people = Storage.pullPeople();
+		Page[] people = Storage.pullAll("Person");
 		for(int i = 0; i<people.length; i++) {
 			System.out.println(people[i].getId());
-			if(r.isQualified(this, people[i])) {
+			if(r.isQualified(this, (Person)people[i])) {
 				people[i].addInternalLink("recommended", this);
 			}
 		}
