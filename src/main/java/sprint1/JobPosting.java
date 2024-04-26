@@ -1,8 +1,29 @@
 package sprint1;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class JobPosting extends Page {
-	private static final String[] rolesIs = {"job","recommended"};
+	/**
+	 * 
+	 */
+	public JobPosting() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	/**
+	 * @param id
+	 * @param name
+	 * @param description
+	 * @param externalLinks
+	 * @param internalLinks
+	 */
+	public JobPosting(String id, String name, String description, ArrayList<String> externalLinks,
+			HashMap<String, ArrayList<String>> internalLinks) {
+		super(id, name, description, externalLinks, internalLinks);
+		// TODO Auto-generated constructor stub
+	}
+	private static final String[] rolesIs = {"job","recommended","follower"};
 	private static final String[] linksHas = {"skill","contributor","applicant","editor","mentor","viewer"};
 	public JobPosting(String name) {
 		super(name);

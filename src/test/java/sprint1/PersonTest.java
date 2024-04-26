@@ -24,15 +24,15 @@ Project j;
 
 	@BeforeEach
 	void setUp() throws Exception {
-		PersonDesc pa = new PersonDesc("100", "a", "she/her", "a@aol.com", new String[0], new String [0], "1236457890", new ArrayList<String>(), new HashMap<String,ArrayList<String>>());
-		PersonDesc pb = new PersonDesc("200", "a", "she/her", "a@aol.com", new String[0], new String [0], "1236457890", new ArrayList<String>(), new HashMap<String,ArrayList<String>>());
-		PersonDesc pc = new PersonDesc("100", "b", "she/her", "a@aol.com", new String[0], new String [0], "1236457890", new ArrayList<String>(), new HashMap<String,ArrayList<String>>());
-		PersonDesc pd = new PersonDesc("100", "a", "she/they", "a@aol.com", new String[0], new String [0], "1236457890", new ArrayList<String>(), new HashMap<String,ArrayList<String>>());
-		PersonDesc pe = new PersonDesc("100", "a", "she/her", "b@aol.com", new String[0], new String [0], "1236457890", new ArrayList<String>(), new HashMap<String,ArrayList<String>>());
-		PersonDesc pf = new PersonDesc("100", "a", "she/her", "a@aol.com", new String[0], new String [0], "5555555555", new ArrayList<String>(), new HashMap<String,ArrayList<String>>());
-		PersonDesc pg = new PersonDesc("100", "a", "she/her", "a@aol.com", new String[0], new String [0], "1236457890", null, new HashMap<String,ArrayList<String>>());
-		PersonDesc ph = new PersonDesc("100", "a", "she/her", "a@aol.com", new String[0], new String [0], "1236457890", new ArrayList<String>(), null);
-		PageDesc pi = new PageDesc("100", "a", new ArrayList<String>(), new HashMap<String,ArrayList<String>>(),new String[0], new String [0]);
+		PersonDesc pa = new PersonDesc("100", "a", "she/her", "a@aol.com", new String[0], new String [0], "1236457890", new ArrayList<String>(), new HashMap<String,ArrayList<String>>(), null);
+		PersonDesc pb = new PersonDesc("200", "a", "she/her", "a@aol.com", new String[0], new String [0], "1236457890", new ArrayList<String>(), new HashMap<String,ArrayList<String>>(), null);
+		PersonDesc pc = new PersonDesc("100", "b", "she/her", "a@aol.com", new String[0], new String [0], "1236457890", new ArrayList<String>(), new HashMap<String,ArrayList<String>>(), null);
+		PersonDesc pd = new PersonDesc("100", "a", "she/they", "a@aol.com", new String[0], new String [0], "1236457890", new ArrayList<String>(), new HashMap<String,ArrayList<String>>(), null);
+		PersonDesc pe = new PersonDesc("100", "a", "she/her", "b@aol.com", new String[0], new String [0], "1236457890", new ArrayList<String>(), new HashMap<String,ArrayList<String>>(), null);
+		PersonDesc pf = new PersonDesc("100", "a", "she/her", "a@aol.com", new String[0], new String [0], "5555555555", new ArrayList<String>(), new HashMap<String,ArrayList<String>>(), null);
+		PersonDesc pg = new PersonDesc("100", "a", "she/her", "a@aol.com", new String[0], new String [0], "1236457890", null, new HashMap<String,ArrayList<String>>(), "hello");
+		PersonDesc ph = new PersonDesc("100", "a", "she/her", "a@aol.com", new String[0], new String [0], "1236457890", new ArrayList<String>(), null, null);
+		PageDesc pi = new PageDesc("100", "a", new ArrayList<String>(), new HashMap<String,ArrayList<String>>(),new String[0], new String [0], null);
 
 		a = new Person(pa);
 		aa = new Person (pa);

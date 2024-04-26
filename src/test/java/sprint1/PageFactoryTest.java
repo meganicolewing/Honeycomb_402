@@ -14,8 +14,8 @@ Person e;
 Page[] p;
 	@BeforeEach
 	void setUp() throws Exception {
-		a = new PageDesc("1","a",null,null,null,null);
-		b = new PersonDesc("2","b","they/them","b@aol.com",null,null,"5555555555",null,null);
+		a = new PageDesc("1","a",null,null,null,null,null);
+		b = new PersonDesc("2","b","they/them","b@aol.com",null,null,"5555555555",null,null,null);
 		d = new PageDesc[5];
 		p = new Page[5];
 		e = new Person("p","she/they","c@hotmail.com","1236547890");
@@ -38,8 +38,6 @@ Page[] p;
 		assertTrue(person.getName().equals("b"));
 		assertTrue(person.getPronouns().equals("they/them"));
 		assertTrue(person.getEmail().equals("b@aol.com"));
-		assertTrue(person.getExternalLinks()==(null));
-		assertTrue(person.getInternalLinks()==(null));
 		assertTrue(person.getPhoneNumber().equals("5555555555"));
 		assertTrue(person.getRolesIs()!=(null));
 		assertTrue(person.getName()!=(null));
@@ -49,8 +47,6 @@ Page[] p;
 		assertTrue(page.getClass().getName().equals("sprint1.Company"));
 		assertTrue(page.getId().equals("1"));
 		assertTrue(page.getName().equals("a"));
-		assertTrue(page.getExternalLinks()==(null));
-		assertTrue(page.getInternalLinks()==(null));
 		assertTrue(page.getRolesIs()!=(null));
 		assertTrue(page.getName()!=(null));
 		page = PageFactory.makePage("sprint1.Person", a);

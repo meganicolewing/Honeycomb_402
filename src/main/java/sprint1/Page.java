@@ -3,8 +3,34 @@ package sprint1;
 import java.util.*;
 
 public abstract class Page {
+	/**
+	 * @param id
+	 * @param name
+	 * @param description
+	 * @param externalLinks
+	 * @param internalLinks
+	 */
+	public Page(String id, String name, String description, ArrayList<String> externalLinks,
+			HashMap<String, ArrayList<String>> internalLinks) {
+		this.id = id;
+		this.name = name;
+		this.description = description;
+		this.externalLinks = externalLinks;
+		this.internalLinks = internalLinks;
+		if(this.externalLinks == null) {
+			this.externalLinks = new ArrayList<String>();
+		}
+		if(this.internalLinks == null) {
+			this.internalLinks = new HashMap<String,ArrayList<String>>();
+			String[] links = this.getLinksHas();
+			for(String link: links) {
+				this.internalLinks.put(link,new ArrayList<String>());
+			}
+		}
+	}
 	protected String id;
 	protected String name;
+	protected String description;
 	protected ArrayList<String> externalLinks;
 	protected HashMap<String,ArrayList<String>> internalLinks;	
 	/**
@@ -27,8 +53,20 @@ public abstract class Page {
 	public Page(PageDesc p) {
 		this.id = p.id();
 		this.name = p.name();
+		this.description = p.description();
 		this.externalLinks = p.externalLinks();
 		this.internalLinks = p.internalLinks();
+		if(this.externalLinks == null) {
+			this.externalLinks = new ArrayList<String>();
+		}
+		if(this.internalLinks == null) {
+			this.internalLinks = new HashMap<String,ArrayList<String>>();
+			String[] links = this.getLinksHas();
+			for(String link: links) {
+				this.internalLinks.put(link,new ArrayList<String>());
+			}
+		}
+		
 	}
 	public Page() {};
 	public String getId() {
@@ -41,6 +79,12 @@ public abstract class Page {
 	public void setName(String name) {
 		this.name = name;
 		Storage.update(this);
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String d) {
+		description = d;
 	}
 	public void addExternalLink(String e) {
 		externalLinks.add(e);
@@ -106,7 +150,7 @@ public abstract class Page {
 		if (getClass() != obj.getClass())
 			return false;
 		Page other = (Page) obj;
-		return Objects.equals(externalLinks, other.externalLinks) && Objects.equals(id, other.id)
+		return Objects.equals(externalLinks, other.externalLinks) && Objects.equals(id, other.id) && Objects.equals(description,  other.description)
 				&& Objects.equals(internalLinks, other.internalLinks) && Objects.equals(name, other.name);
 	}
 	

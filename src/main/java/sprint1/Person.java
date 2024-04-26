@@ -1,10 +1,28 @@
 package sprint1;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Objects;
 
 
 public class Person extends Page {
+	/**
+	 * @param id
+	 * @param name
+	 * @param description
+	 * @param externalLinks
+	 * @param internalLinks
+	 * @param pronouns
+	 * @param email
+	 * @param phoneNumber
+	 */
+	public Person(String id, String name, String description, ArrayList<String> externalLinks,
+			HashMap<String, ArrayList<String>> internalLinks, String pronouns, String email, String phoneNumber) {
+		super(id, name, description, externalLinks, internalLinks);
+		this.pronouns = pronouns;
+		this.email = email;
+		this.phoneNumber = phoneNumber;
+	}
 	/**
 	 * @param name
 	 * @param pronouns
@@ -32,7 +50,7 @@ public class Person extends Page {
 		Storage.update(this);
 	}
 	public Person(PersonDesc p) {
-		super(new PageDesc(p.id(),p.name(),p.externalLinks(),p.internalLinks(),null,null));
+		super(new PageDesc(p.id(),p.name(),p.externalLinks(),p.internalLinks(),null,null,p.description()));
 		this.pronouns = p.pronouns();
 		this.email = p.email();
 		this.phoneNumber = p.phoneNumber();
@@ -75,6 +93,9 @@ public class Person extends Page {
 		return viewers.contains(this.getId());
 	}
 	public boolean canEdit(Page p) {
+		if(this.getId().equals(p.getId())) {
+			return true;
+		}
 		ArrayList<String> editors = p.getInternalLinks("editor");
 		return editors.contains(this.getId());
 	}

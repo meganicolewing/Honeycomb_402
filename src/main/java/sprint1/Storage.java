@@ -2,12 +2,12 @@ package sprint1;
 
 import org.springframework.http.MediaType;
 import org.springframework.web.client.RestClient;
-import java.util.ArrayList;
 
 public class Storage {
 	private static RestClient client = RestClient.create();
 	private static String baseUri = null;
-	private static ArrayList<String> classes = new ArrayList<String>();
+	private static String[] classes = {"sprint1.Person","sprint1.Company",
+			"sprint1.JobPosting","sprint1.Project","sprint1.NewsArticle","sprint1.Skill"};
 	private static void create() {
 		baseUri = "http://localhost:9000/v1/honeycomb";
 		Desc team = new Desc("honeycomb","the honeycomb platform","");
@@ -16,7 +16,14 @@ public class Storage {
 			.contentType(MediaType.APPLICATION_JSON)
 			.body(team)
 			.retrieve();
-		classes = new ArrayList<String>();
+		for(String className: classes) {
+			Desc newClass = new Desc(className,"a page","");
+			client.post()
+				.uri(baseUri+"/"+className)
+				.contentType(MediaType.APPLICATION_JSON)
+				.body(newClass)
+				.retrieve();
+		}
 	}
 	public static String getBaseUri() {
 		return baseUri;
@@ -27,16 +34,6 @@ public class Storage {
 			create();
 		}
 		String className = p.getClass().getName();
-		if(!classes.contains(className)){
-			classes.add(className);
-			Desc pushClass = new Desc(className,p.getClass().descriptorString(),"");
-			client.post()
-					.uri(baseUri+"/"+className)
-					.contentType(MediaType.APPLICATION_JSON)
-					.body(pushClass)
-					.retrieve()
-					.body(Response.class);
-		}
 		Response resp = client.post()
 			.uri(baseUri+"/"+className+"/"+p.getId())
 			.contentType(MediaType.APPLICATION_JSON)
@@ -50,30 +47,29 @@ public class Storage {
 	public static Page pull(String id) {
 		if(baseUri == null) {
 			create();
-			return null;
 		}
-		for(int i =0; i<classes.size(); i++) {
+		for(int i =0; i<classes.length; i++) {
 			Response guess = client.get()
-					.uri(baseUri+"/"+classes.get(i)+"/"+id)
+					.uri(baseUri+"/"+classes[i]+"/"+id)
 					.retrieve()
 					.body(Response.class);
 			if(guess.successful()) {
-				if(classes.get(i).equals("sprint1.Person")) {
+				if(classes[i].equals("sprint1.Person")) {
 					PersonResponse resp = client.get()
-							.uri(baseUri+"/"+classes.get(i)+"/"+id)
+							.uri(baseUri+"/"+classes[i]+"/"+id)
 							.retrieve()
 							.body(PersonResponse.class);
 					if(resp.successful()) {
-						return PageFactory.makePage(classes.get(i), resp.data());
+						return PageFactory.makePage(classes[i], resp.data());
 					}
 				}
 				else {
 					PageResponse resp = client.get()
-							.uri(baseUri+"/"+classes.get(i)+"/"+id)
+							.uri(baseUri+"/"+classes[i]+"/"+id)
 							.retrieve()
 							.body(PageResponse.class);
 					if(resp.successful()) {
-						return PageFactory.makePage(classes.get(i),resp.data());
+						return PageFactory.makePage(classes[i],resp.data());
 					}
 				}
 			}
@@ -107,13 +103,13 @@ public class Storage {
 			create();
 			return null;
 		}
-		if(!classes.contains("sprint1.Person")) {
-			return null;
-		}
 		ListResponse resp = client.get().uri(baseUri+"/sprint1.Person")
 				.retrieve()
 				.body(ListResponse.class);
 		int numPeople = resp.data().length;
+		if(numPeople == 0) {
+			return null;
+		}
 		Person[] people = new Person[numPeople];
 		for(int i = 0; i<numPeople;i++) {
 			PersonResponse personResp = client.get()
@@ -130,7 +126,10 @@ public class Storage {
 			create();
 			return null;
 		}
-		if(!classes.contains(type)) {
+		Response guess = client.get().uri(baseUri+"/"+type)
+				.retrieve()
+				.body(Response.class);
+		if(!guess.successful()) {
 			return null;
 		}
 		if(type.equals("sprint1.Person")) {
@@ -140,14 +139,15 @@ public class Storage {
 				.retrieve()
 				.body(ListResponse.class);
 		int numPages = resp.data().length;
-		//System.out.println(numPages);
+		if(numPages == 0) {
+			return null;
+		}
 		Page[] pages = new Page[numPages];
 		for(int i = 0; i<numPages;i++) {
 			PageResponse pageResp = client.get()
 					.uri(baseUri+"/"+type+"/"+resp.data()[i].name())
 					.retrieve()
 					.body(PageResponse.class);
-			System.out.println(pageResp.data());
 			pages[i] = PageFactory.makePage(type, pageResp.data());
 		}
 		return pages;

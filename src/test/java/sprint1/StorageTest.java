@@ -15,14 +15,14 @@ class StorageTest {
 
 	@Test
 	void testPull() {
-		PersonDesc pDesc = new PersonDesc("10","a", null, null, null, null, null, null, null);
+		PersonDesc pDesc = new PersonDesc("10","a", null, null, null, null, null, null, null, null);
 		Person a = PageFactory.makePage("sprint1.Person",pDesc);
 		assertTrue(Storage.getBaseUri()==null);
 		assertTrue(Storage.pull(a.getId())==null);
 		assertFalse(Storage.getBaseUri()==null);
 		assertTrue(Storage.push(a));
 		assertTrue(Storage.pull(a.getId()).equals(a));
-		pDesc = new PersonDesc("20","b", null, null, null, null, null, null, null);
+		pDesc = new PersonDesc("20","b", null, null, null, null, null, null, null, null);
 		Person b = PageFactory.makePage("sprint1.Person",pDesc);
 		assertTrue(Storage.pull(b.getId())==null);
 		Person c = new Person("c", null, null, null);
@@ -33,7 +33,7 @@ class StorageTest {
 	}
 	@Test
 	void testUpdate() {
-		PersonDesc pDesc = new PersonDesc("10","a", null, null, null, null, null, null, null);
+		PersonDesc pDesc = new PersonDesc("10","a", null, null, null, null, null, null, null, null);
 		Person a = PageFactory.makePage("sprint1.Person",pDesc);
 		assertTrue(Storage.update(a));
 		Page c = new Company("c");
@@ -42,7 +42,7 @@ class StorageTest {
 	
 	@Test
 	void testPush() {
-		PersonDesc pDesc = new PersonDesc("10","a", null, null, null, null, null, null, null);
+		PersonDesc pDesc = new PersonDesc("10","a", null, null, null, null, null, null, null, null);
 		Person a = PageFactory.makePage("sprint1.Person",pDesc);
 		assertTrue(Storage.push(a));
 		assertTrue(Storage.pull(a.getId()).equals(a));
