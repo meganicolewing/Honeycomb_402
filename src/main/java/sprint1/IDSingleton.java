@@ -12,4 +12,10 @@ public class IDSingleton {
 		}
 		return Integer.toString(idSingle.id++);
 	}
+	public static void resetID() {
+		if(idSingle==null) {
+			idSingle = new IDSingleton();
+		}
+		idSingle.id = 0;
+	}
 }

@@ -9,11 +9,9 @@ import views.PersonCanEditController;
 import views.DirectoryController;
 import views.LoginPageController;
 
-public class HomeTransitionModel {
-	BorderPane mainview;
-	
+public class HomeTransitionModel extends RecommendationTransition {	
 	public HomeTransitionModel(BorderPane view) {
-		mainview = view;
+		super(view);
 	}
 	
 	public void showHome() {
@@ -28,13 +26,16 @@ public class HomeTransitionModel {
 	  	  PersonTransitionModel personTransitionModel = new PersonTransitionModel(mainview);
 	      cont.setModel(model,personTransitionModel);
 	      mainview.setCenter(view);
+	      showRecommendations(model);
 
 	    } catch (IOException e) {
 	      // TODO Auto-generated catch block
 	      e.printStackTrace();
 	    }
+	    
 	}
 	public void showSearch() {
+		mainview.setBottom(null);
 	    FXMLLoader loader = new FXMLLoader();
 	    loader.setLocation(HomeTransitionModel.class
 	        .getResource("../views/Directory.fxml"));
@@ -51,6 +52,7 @@ public class HomeTransitionModel {
 	    }
 	}
 	public void showLogin() {
+		mainview.setBottom(null);
 	    FXMLLoader loader = new FXMLLoader();
 	    loader.setLocation(HomeTransitionModel.class
 	        .getResource("../views/LoginPage.fxml"));

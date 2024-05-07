@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="75.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.RecommendationsController">
+   <children>
+      <Label text="Recommendations:">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <VBox.margin>
+            <Insets left="25.0" />
+         </VBox.margin>
+      </Label>
+      <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="600.0" spacing="15.0">
+         <children>
+            <Button id="button1" fx:id="button1" mnemonicParsing="false" onAction="#onClickRecommendation1">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="25.0" />
+               </HBox.margin>
+               <graphic>
+                  <Label id="label1" fx:id="label1" text="Label">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </graphic>
+            </Button>
+            <Button id="button2" fx:id="button2" mnemonicParsing="false" onAction="#onClickRecommendation2">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <graphic>
+                  <Label id="label2" fx:id="label2" text="Label">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </graphic>
+            </Button>
+            <Button id="button3" fx:id="button3" mnemonicParsing="false" onAction="#onClickRecommendation3">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <graphic>
+                  <Label id="label3" fx:id="label3" text="Label">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </graphic>
+            </Button>
+            <Button id="button4" fx:id="button4" mnemonicParsing="false" onAction="#onClickRecommendation4">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <graphic>
+                  <Label id="label4" fx:id="label4" text="Label">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </graphic>
+            </Button>
+            <Button id="button5" fx:id="button5" mnemonicParsing="false" onAction="#onClickRecommendation5">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <graphic>
+                  <Label id="label5" fx:id="label5" text="Label">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </graphic>
+            </Button>
+         </children>
+      </HBox>
+   </children>
+</VBox>

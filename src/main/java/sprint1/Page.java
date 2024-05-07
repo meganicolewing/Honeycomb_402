@@ -154,4 +154,52 @@ public abstract class Page {
 				&& Objects.equals(internalLinks, other.internalLinks) && Objects.equals(name, other.name);
 	}
 	
+	public ArrayList<String> findRecommendations(){
+		ArrayList<Page> pages = pullPages();
+		HashMap<String,ArrayList<String>> relations = pullRelations(pages);
+		HashMap<String,Integer> pageLinks = findPageIds();
+		pageLinks = parseRelations(relations,pageLinks);
+		return orderRelations(pageLinks);
+	}
+	
+	protected abstract ArrayList<Page> pullPages();
+	protected abstract HashMap<String,ArrayList<String>> pullRelations(ArrayList<Page> pages);
+	protected abstract HashMap<String,Integer> findPageIds();
+	protected HashMap<String,Integer> parseRelations(HashMap<String,ArrayList<String>> relations, HashMap<String,Integer> pageLinks){
+		for(ArrayList<String> page: relations.values()) {
+			if(page.contains(this.id)) {
+				for(String key: page) {
+					if(pageLinks.containsKey(key)){
+						int newNum = pageLinks.get(key)+1;
+						pageLinks.replace(key,newNum);
+					}
+				}
+			}
+		}
+		return pageLinks;
+	}
+	private ArrayList<String> orderRelations(HashMap<String,Integer> pageLinks){
+		ArrayList<String> orderedRelations = new ArrayList<String>();
+		Set<String> keys = pageLinks.keySet();
+		System.out.println(pageLinks);
+		for(String key:keys) {
+			if(orderedRelations.size()==0) {
+				orderedRelations.add(key);
+			}
+			else {
+				int count = pageLinks.get(key);
+				int i = 0;
+				while(i<orderedRelations.size()&&!orderedRelations.contains(key)){
+					if(pageLinks.get(orderedRelations.get(i))<count) {
+						orderedRelations.add(i,key);
+					}
+					i++;
+				}
+				if(!orderedRelations.contains(key)) {
+					orderedRelations.add(key);
+				}
+			}
+		}
+		return orderedRelations;
+	}
 }

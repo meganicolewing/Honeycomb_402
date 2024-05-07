@@ -12,10 +12,9 @@ import sprint1.Person;
 import sprint1.Storage;
 
 
-public class ListNavigationModel {
-	BorderPane mainview;
+public class ListNavigationModel extends RecommendationTransition{
 	public ListNavigationModel(BorderPane view) {
-		mainview = view;
+		super(view);
 	}
 	public void showPage(Page p) {
 	    SessionSingleton current = SessionSingleton.getInstance();
@@ -31,19 +30,22 @@ public class ListNavigationModel {
 		if(!user.canView(p)) {
 			showNoView();
 		}
-		else if(user.canEdit(p)) {
-			if(user.getInternalLinks("follower").contains(p.getId())) {
-				showFollowed(model);
+		else {
+			if(user.canEdit(p)) {
+				if(user.getInternalLinks("follower").contains(p.getId())) {
+					showFollowed(model);
+				}
+				else {
+					showUneditable(model);
+				}
+			}
+			else if(user.getInternalLinks("follower").contains(p.getId())) {
+				showFollowedNoEdit(model);
 			}
 			else {
-				showUneditable(model);
+				showNoEdit(model);
 			}
-		}
-		else if(user.getInternalLinks("follower").contains(p.getId())) {
-			showFollowedNoEdit(model);
-		}
-		else {
-			showNoEdit(model);
+			showRecommendations(p);
 		}
 	}
 	public void showUneditable(PageModel p)
@@ -115,6 +117,7 @@ public class ListNavigationModel {
 		FXMLLoader loader = new FXMLLoader();
 		 loader.setLocation(PersonTransitionModel.class
 			        .getResource(filepath));
+		 
 			    try {
 			      Node view = loader.load();
 			      mainview.setCenter(view);
@@ -174,5 +177,4 @@ public class ListNavigationModel {
 			      e.printStackTrace();
 			    }
 	}
-
 }

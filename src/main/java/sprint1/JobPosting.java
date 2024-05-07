@@ -49,4 +49,52 @@ public class JobPosting extends Page {
 		}
 		System.out.println(people[0].getInternalLinks());
 	}
+	@Override
+	protected ArrayList<Page> pullPages() {
+		Page[] pages = Storage.pullAll("JobPosting");
+		ArrayList<Page> pageList = new ArrayList<Page>();
+		for(Page p:pages) {
+			pageList.add(p);
+		}
+		return pageList;
+	}
+	@Override
+	protected HashMap<String,ArrayList<String>> pullRelations(ArrayList<Page> pages) {
+		HashMap<String,ArrayList<String>> relations = new HashMap<String,ArrayList<String>>();
+		for(Page page:pages) {
+			ArrayList<String> links = page.getInternalLinks("skill");
+			links.addAll(page.getInternalLinks("contributor"));
+			relations.put(page.getId(),links);
+		}
+		return relations;
+	}
+	@Override
+	protected HashMap<String, Integer> findPageIds() {
+		Page[] jobs = Storage.pullAll("JobPosting");
+		HashMap<String,Integer> pageLinks = new HashMap<String,Integer>();
+		for(Page j: jobs) {
+			if(!j.getId().equals(this.getId())) {
+				pageLinks.put(j.getId(), 0);
+			}
+		}
+		return pageLinks;
+	}
+	@Override
+	protected HashMap<String,Integer> parseRelations(HashMap<String,ArrayList<String>> relations, HashMap<String,Integer> pageLinks){
+		ArrayList<String> thisLinks = this.getInternalLinks("contributor");
+		thisLinks.addAll(this.getInternalLinks("skill"));
+		for(String key:relations.keySet()) {
+			if(pageLinks.containsKey(key)) {
+				int count = 0;
+				ArrayList<String> thatLinks = relations.get(key);
+				for(String link:thisLinks) {
+					if(thatLinks.contains(link)) {
+						count++;
+					}
+				}
+				pageLinks.put(key, count);
+			}
+		}
+		return pageLinks;
+	}
 }

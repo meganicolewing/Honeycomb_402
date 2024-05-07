@@ -10,14 +10,12 @@ import views.HomeBarController;
 import views.LoginPageController;
 import views.PersonCanEditController;
 
-public class LoginNavigationModel implements LoginNavigationModelInterface
+public class LoginNavigationModel extends RecommendationTransition implements LoginNavigationModelInterface 
 {
-	BorderPane mainview;
-	//PersonModel personModel;
 	
 	 public LoginNavigationModel(BorderPane view)
 	 {
-	    this.mainview = view;
+	    super(view);
 	 }
 	@Override
 	public void showLogin()
@@ -69,7 +67,7 @@ public class LoginNavigationModel implements LoginNavigationModelInterface
 	  	  PersonTransitionModel personTransitionModel = new PersonTransitionModel(mainview);
 	      personCont.setModel(personModel, personTransitionModel);
 	      mainview.setCenter(center);	      
-	      
+	      showRecommendations(personModel);
 	    } catch (IOException e) {
 	      e.printStackTrace();
 	    }

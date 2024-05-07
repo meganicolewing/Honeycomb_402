@@ -9,16 +9,14 @@ import views.JobPostingEditController;
 import views.PageCanEditController;
 import views.PageEditController;
 
-public class PageTransitionModel{
-
-	BorderPane mainview;
-	PageModel page;
+public class PageTransitionModel extends RecommendationTransition{
 	public PageTransitionModel(BorderPane view) {
-		mainview = view;
+		super(view);
 	}
 
 	public void showEditable(PageModel page)
 	{
+		mainview.setBottom(null);
 		FXMLLoader loader = new FXMLLoader();
 		 loader.setLocation(PersonTransitionModel.class
 			        .getResource("../views/PageEditView.fxml"));
@@ -42,6 +40,7 @@ public class PageTransitionModel{
 			      mainview.setCenter(view);
 			      JobPostingEditController cont = loader.getController();
 			      cont.setModel(page,this);
+			      showRecommendations(page);
 			    } catch (IOException e) {
 			      // TODO Auto-generated catch block
 			      e.printStackTrace();
@@ -57,6 +56,7 @@ public class PageTransitionModel{
 			      mainview.setCenter(view);
 			      PageCanEditController cont = loader.getController();
 			      cont.setModel(page,this);
+			      showRecommendations(page);
 			    } catch (IOException e) {
 			      // TODO Auto-generated catch block
 			      e.printStackTrace();
@@ -72,6 +72,7 @@ public class PageTransitionModel{
 			      mainview.setCenter(view);
 			      PageCanEditController cont = loader.getController();
 			      cont.setModel(page,this);
+			      showRecommendations(page);
 			    } catch (IOException e) {
 			      // TODO Auto-generated catch block
 			      e.printStackTrace();
@@ -87,6 +88,7 @@ public class PageTransitionModel{
 			      mainview.setCenter(view);
 			      PageCanEditController cont = loader.getController();
 			      cont.setModel(page,this);
+			      showRecommendations(page);
 			    } catch (IOException e) {
 			      // TODO Auto-generated catch block
 			      e.printStackTrace();
@@ -102,6 +104,7 @@ public class PageTransitionModel{
 			      mainview.setCenter(view);
 			      PageCanEditController cont = loader.getController();
 			      cont.setModel(page,this);
+			      showRecommendations(page);
 			    } catch (IOException e) {
 			      // TODO Auto-generated catch block
 			      e.printStackTrace();

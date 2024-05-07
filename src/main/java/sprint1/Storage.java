@@ -158,5 +158,6 @@ public class Storage {
 			.retrieve()
 			.body(String.class);
 		baseUri = null;
+		IDSingleton.resetID();
 	}
 }

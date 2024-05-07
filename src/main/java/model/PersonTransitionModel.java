@@ -8,17 +8,16 @@ import javafx.scene.layout.BorderPane;
 import views.PersonCanEditController;
 import views.PersonEditController;
 
-public class PersonTransitionModel
+public class PersonTransitionModel extends RecommendationTransition
 {
-	BorderPane mainview;
-	
 	public PersonTransitionModel(BorderPane view)
 	{
-		mainview = view;
+		super(view);
 	}
 	
 	public void showEditable(PersonModel model)
 	{
+		mainview.setBottom(null);
 		FXMLLoader loader = new FXMLLoader();
 		 loader.setLocation(PersonTransitionModel.class
 			        .getResource("../views/PersonEditView.fxml"));
@@ -42,6 +41,7 @@ public class PersonTransitionModel
 			      mainview.setCenter(view);
 			      PersonCanEditController cont = loader.getController();
 			      cont.setModel(model,this);
+			      showRecommendations(model);
 			    } catch (IOException e) {
 			      // TODO Auto-generated catch block
 			      e.printStackTrace();
@@ -57,6 +57,7 @@ public class PersonTransitionModel
 			      mainview.setCenter(view);
 			      PersonCanEditController cont = loader.getController();
 			      cont.setModel(model,this);
+			      showRecommendations(model);
 			    } catch (IOException e) {
 			      // TODO Auto-generated catch block
 			      e.printStackTrace();
@@ -72,6 +73,7 @@ public class PersonTransitionModel
 			      mainview.setCenter(view);
 			      PersonCanEditController cont = loader.getController();
 			      cont.setModel(model,this);
+			      showRecommendations(model);
 			    } catch (IOException e) {
 			      // TODO Auto-generated catch block
 			      e.printStackTrace();
@@ -87,6 +89,7 @@ public class PersonTransitionModel
 			      mainview.setCenter(view);
 			      PersonCanEditController cont = loader.getController();
 			      cont.setModel(model,this);
+			      showRecommendations(model);
 			    } catch (IOException e) {
 			      // TODO Auto-generated catch block
 			      e.printStackTrace();
