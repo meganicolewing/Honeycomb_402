@@ -27,11 +27,7 @@
                   <Insets left="25.0" />
                </HBox.margin>
                <graphic>
-                  <Label id="label1" fx:id="label1" text="Label">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
+                  <Label id="label1" fx:id="label1" text="Label" />
                </graphic>
             </Button>
             <Button id="button2" fx:id="button2" mnemonicParsing="false" onAction="#onClickRecommendation2">
@@ -39,11 +35,7 @@
                   <Font size="18.0" />
                </font>
                <graphic>
-                  <Label id="label2" fx:id="label2" text="Label">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
+                  <Label id="label2" fx:id="label2" text="Label" />
                </graphic>
             </Button>
             <Button id="button3" fx:id="button3" mnemonicParsing="false" onAction="#onClickRecommendation3">
@@ -51,11 +43,7 @@
                   <Font size="18.0" />
                </font>
                <graphic>
-                  <Label id="label3" fx:id="label3" text="Label">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
+                  <Label id="label3" fx:id="label3" text="Label" />
                </graphic>
             </Button>
             <Button id="button4" fx:id="button4" mnemonicParsing="false" onAction="#onClickRecommendation4">
@@ -63,11 +51,7 @@
                   <Font size="18.0" />
                </font>
                <graphic>
-                  <Label id="label4" fx:id="label4" text="Label">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
+                  <Label id="label4" fx:id="label4" text="Label" />
                </graphic>
             </Button>
             <Button id="button5" fx:id="button5" mnemonicParsing="false" onAction="#onClickRecommendation5">
@@ -75,11 +59,7 @@
                   <Font size="18.0" />
                </font>
                <graphic>
-                  <Label id="label5" fx:id="label5" text="Label">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
+                  <Label id="label5" fx:id="label5" text="Label" />
                </graphic>
             </Button>
          </children>

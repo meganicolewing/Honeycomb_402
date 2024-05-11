@@ -16,7 +16,10 @@ public class RecommendationModel {
 		Page user = Storage.pull(SessionSingleton.getInstance().getUserId());
 		ArrayList<String> userFollows = user.getInternalLinks("follower");
 		int index = 0;
-		for(String rec:recommendations) {
+		int i = 0;
+		while(index<5 && i<recommendations.size()) {
+			String rec = recommendations.get(i);
+			i++;
 			if(!userFollows.contains(rec)) {
 				recommendedIds[index] = rec;
 				Page recPage = Storage.pull(rec);
